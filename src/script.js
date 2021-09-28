@@ -31,25 +31,27 @@ scene.add(light)
 
 //Terrain (two meshes)
 
-// var audioFiles = [0,0,0]
+var audioFiles = [0,0,0]
 
-// function placeSpectrograms(audioFiles){
+function placeSpectrograms(audioFiles){
     
-// }
-//example cube
-const cubeGeometry = new THREE.BoxGeometry(0.5,0.5,0.5);
+}
 
+const cubeGeometry = new THREE.BoxGeometry(1,1,1);
 const cubeMaterial = new THREE.MeshBasicMaterial({color: 'red'});
 const cube = new THREE.Mesh(cubeGeometry,cubeMaterial)
 scene.add(cube)
-cube.rotation.x += Math.PI /4;
 
-const sphereGeometry = new THREE.SphereGeometry( 1, 32, 16 );
-const sphereMaterial = new THREE.MeshBasicMaterial( { color: 'cyan' } );
-const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
-scene.add( sphere );
+/*const sphereGeometry = new THREE.SphereGeometry(1,32,16);
+const sphereMaterial = new THREE.MeshBasicMaterial({color: 'cyan'});
+const sphere = new THREE.Mesh(sphereGeometry , sphereMaterial)
+scene.add(sphere)*/
 
-// sphere.position.x += 10
+
+const torusGeometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
+const torusMaterial = new THREE.MeshBasicMaterial( { color: 'cyan',wireframe: true } );
+const torusKnot = new THREE.Mesh( torusGeometry, torusMaterial )
+scene.add( torusKnot )
 
 
 const geometry = new THREE.PlaneGeometry( 100, 100 );
@@ -65,17 +67,7 @@ const floorPlane = new THREE.Mesh( geometry, horizontalGridMaterial );
 floorPlane.rotation.x -= Math.PI/2
 scene.add( floorPlane );
 
-
-
 scene.add(new THREE.AxesHelper())
-
-const torusKnotGeometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
-const TKMaterial = new THREE.MeshBasicMaterial({color: 'orange',wireframe: true})
-const torusKnot = new THREE.Mesh(torusKnotGeometry,TKMaterial)
-
-scene.add(torusKnot)
-
-
 
 /**
  * Sizes
@@ -123,9 +115,9 @@ const tick = () =>
     // Update controls
     controls.update()
     delta += clock.getDelta();
-    sphere.position.y = 10 * Math.sin(elapsedTime);
-    sphere.position.x = 10 * Math.cos(elapsedTime);
-    // material.uniforms.uTime.value = elapsedTime;
+	cube.position.x = 10 * Math.sin(elapsedTime);
+	cube.position.y = 3 * Math.sin(elapsedTime);
+    //material.uniforms.uTime.value = elapsedTime;
 }
 
 tick()
